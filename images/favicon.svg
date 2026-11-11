@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Kinton favicon: the wordmark's K in Paper on a Black square with the site's corner radius, scaled -->
+  <rect width="64" height="64" rx="12" fill="#121315"/>
+  <path fill="#F7F4F1" transform="translate(15.093 9.716) scale(0.20360)" d="M0 207.681V11.2234H41.689V97.8455H44.2885L115.246 11.2234H165.215L92.0436 99.1881L166.082 207.681H116.21L62.1966 126.912L41.689 151.852V207.681H0Z"/>
+</svg>

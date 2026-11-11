@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-label="Cabin plan of the Kinton Aerospace jet: cockpit, entry, four club seats, two forward seats, washroom and luggage hold">
+  <style>
+    .cp-zone { fill: transparent; }
+    .cp-line, .cp-part, .cp-tick { stroke: currentColor; stroke-width: 1.5; fill: none; }
+    .cp-part { fill: var(--background, #F7F4F1); }
+    .cp-solid { fill: currentColor; }
+    .cp-gap { fill: var(--background, #F7F4F1); }
+    .cp-num { fill: currentColor; font-family: Inter, sans-serif; font-size: 14px; }
+    .cp-area[data-selected] { color: var(--accent, #EC4409); }
+  </style>
+  <!-- Hit areas, one per cabin area. The drawing of each area is the matching .cp-area group below. -->
+  <path d="M 170 60 H 160 C 85 60 16 98 8 140 C 16 182 85 220 160 220 H 170 Z" class="cp-zone" data-zone="cockpit" id="zone-cockpit"/>
+  <rect x="170" y="60" width="92" height="160" class="cp-zone" data-zone="entry" id="zone-entry"/>
+  <rect x="262" y="60" width="190" height="160" class="cp-zone" data-zone="club" id="zone-club"/>
+  <rect x="452" y="60" width="100" height="160" class="cp-zone" data-zone="forward" id="zone-forward"/>
+  <rect x="552" y="60" width="102" height="160" class="cp-zone" data-zone="washroom" id="zone-washroom"/>
+  <rect x="654" y="60" width="198" height="160" class="cp-zone" data-zone="luggage" id="zone-luggage"/>
+
+  <!-- Structure: the fuselage, the door opening and the walls. Never highlighted. -->
+  <path d="M 160 60 H 840 C 905 60 955 108 992 130 V 150 C 955 172 905 220 840 220 H 160 C 85 220 16 182 8 140 C 16 98 85 60 160 60 Z" class="cp-line" stroke-width="2"/>
+  <rect x="191" y="217" width="48" height="6" class="cp-gap"/>
+  <path d="M 190 212 V 228 M 240 212 V 228" class="cp-line" stroke-width="2"/>
+  <path d="M 170 60 V 106 M 170 174 V 220" class="cp-line" stroke-width="1.5"/>
+  <path d="M 560 60 V 110 M 560 170 V 220 M 650 60 V 220" class="cp-line" stroke-width="1.5"/>
+
+  <!-- Areas. The build sets data-selected on the chosen one, and it takes --accent. -->
+  <g class="cp-area" data-zone="cockpit">
+    <path d="M 86 96 Q 66 140 86 184" class="cp-line" stroke-width="1.5"/>
+    <rect x="108" y="80" width="36" height="30" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="137" y="80" width="7" height="30" rx="2" class="cp-solid"/>
+    <rect x="108" y="170" width="36" height="30" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="137" y="170" width="7" height="30" rx="2" class="cp-solid"/>
+  </g>
+
+  <g class="cp-area" data-zone="entry">
+    <rect x="192" y="226" width="46" height="24" class="cp-part" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <rect x="190" y="72" width="50" height="40" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="190" y="72" width="50" height="7" rx="2" class="cp-solid"/>
+  </g>
+
+  <g class="cp-area" data-zone="club">
+    <rect x="272" y="72" width="44" height="40" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="272" y="72" width="7" height="40" rx="2" class="cp-solid"/>
+    <rect x="326" y="78" width="56" height="28" rx="3" class="cp-part" stroke-width="1.5"/>
+    <rect x="392" y="72" width="44" height="40" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="429" y="72" width="7" height="40" rx="2" class="cp-solid"/>
+    <rect x="272" y="168" width="44" height="40" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="272" y="168" width="7" height="40" rx="2" class="cp-solid"/>
+    <rect x="326" y="174" width="56" height="28" rx="3" class="cp-part" stroke-width="1.5"/>
+    <rect x="392" y="168" width="44" height="40" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="429" y="168" width="7" height="40" rx="2" class="cp-solid"/>
+  </g>
+
+  <g class="cp-area" data-zone="forward">
+    <rect x="466" y="72" width="44" height="40" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="503" y="72" width="7" height="40" rx="2" class="cp-solid"/>
+    <rect x="466" y="168" width="44" height="40" rx="5" class="cp-part" stroke-width="1.5"/>
+    <rect x="503" y="168" width="7" height="40" rx="2" class="cp-solid"/>
+  </g>
+
+  <g class="cp-area" data-zone="washroom">
+    <rect x="588" y="70" width="44" height="22" rx="4" class="cp-part" stroke-width="1.5"/>
+    <ellipse cx="610" cy="180" rx="12" ry="14" class="cp-part" stroke-width="1.5"/>
+    <rect x="596" y="196" width="28" height="12" rx="3" class="cp-part" stroke-width="1.5"/>
+  </g>
+
+  <g class="cp-area" data-zone="luggage">
+    <rect x="668" y="76" width="164" height="128" rx="6" class="cp-line" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <rect x="694" y="100" width="46" height="80" rx="6" class="cp-part" stroke-width="1.5"/>
+    <path d="M 709 100 V 93 H 725 V 100" class="cp-line" stroke-width="1.5"/>
+    <rect x="758" y="108" width="42" height="70" rx="6" class="cp-part" stroke-width="1.5"/>
+    <path d="M 771 108 V 101 H 787 V 108" class="cp-line" stroke-width="1.5"/>
+  </g>
+
+  <g font-family="Inter, sans-serif" font-size="14" text-anchor="middle">
+  <text x="120" y="26" class="cp-num">01</text><path d="M 120 34 V 62" class="cp-tick"/>
+  <text x="215" y="26" class="cp-num">02</text><path d="M 215 34 V 59" class="cp-tick"/>
+  <text x="354" y="26" class="cp-num">03</text><path d="M 354 34 V 59" class="cp-tick"/>
+  <text x="488" y="26" class="cp-num">04</text><path d="M 488 34 V 59" class="cp-tick"/>
+  <text x="605" y="26" class="cp-num">05</text><path d="M 605 34 V 59" class="cp-tick"/>
+  <text x="750" y="26" class="cp-num">06</text><path d="M 750 34 V 59" class="cp-tick"/>
+  </g>
+</svg>
