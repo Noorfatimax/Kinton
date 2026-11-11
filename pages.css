@@ -1,0 +1,84 @@
+/* Patterns for the pages that weren't designed: Empty legs, Standards, Company, Page not found, and the Request form.
+   See "Patterns for the pages that weren't designed" in design-spec.md. */
+
+/* Sections are --space-4xl apart (--space-2xl on mobile). Spaced with gap, never with "+". */
+.page-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  margin-top: var(--section-gap);
+}
+
+/* The split: the title in columns 1 to 4, everything else in columns 5 to 12 */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--space-l);
+}
+@media (min-width: 1200px) {
+  .split {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    row-gap: 0;
+    align-items: start;
+  }
+  .split > .split-title { grid-column: 1 / span 4; }
+  .split > .split-body { grid-column: 5 / -1; }
+}
+
+/* Paragraphs: at most 6 columns wide (664 px at 1440), --space-s apart */
+.prose { max-width: calc(664 * var(--u)); }
+.prose > * + * { margin-top: var(--space-s); }
+/* A list after a paragraph starts --space-l below it */
+.prose + .rule-list, p + .rule-list { margin-top: var(--space-l); }
+
+/* Lists: no bullets, --space-s above and below each item, a 1 px line under each item and above the first */
+.rule-list { border-top: 1px solid var(--border); }
+.rule-list > li {
+  padding-block: var(--space-s);
+  border-bottom: 1px solid var(--border);
+}
+
+/* An item with a title and a text: the title in columns 5 and 6, the text in columns 7 to 12 */
+.rule-list .titled {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.rule-list .titled .item-title { color: var(--text-muted); }
+@media (min-width: 1200px) {
+  .rule-list .titled {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    align-items: baseline;
+  }
+  .rule-list .titled .item-title { grid-column: 1 / span 2; }
+  .rule-list .titled .item-text { grid-column: 3 / -1; }
+}
+
+/* Links inside a sentence or a line of text: always underlined, not one of the 44 px targets */
+.text-link { color: var(--text); text-decoration: underline; border-radius: var(--radius); }
+
+/* Every page ends with its button, --space-2xl below the content before it */
+.page-end { margin-top: var(--space-2xl); }
+
+/* Tables (more than three columns, or with links): labels in .t-small --text-muted with --space-s above and below,
+   rows in .t-body with a 1 px line under each. A row with a link has no vertical padding: the link's 44 px sets it. */
+.data-table { width: 100%; }
+.data-table th {
+  padding: var(--space-s) var(--gutter) var(--space-s) 0;
+  text-align: start;
+  font-weight: 400;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 0 var(--gutter) 0 0;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th:last-child, .data-table td:last-child { padding-right: 0; }
+.data-table.padded td { padding-block: var(--space-s); vertical-align: top; }
+.data-table .num { font-variant-numeric: tabular-nums; }
+.data-table .end { text-align: end; }

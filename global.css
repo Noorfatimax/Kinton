@@ -1,0 +1,323 @@
+@import './tokens.css';
+@import '@fontsource/inter/latin-400.css';
+@import './pages.css';
+
+/* ---------- Text styles: the only five ---------- */
+:root {
+  --fs-h1: calc(32 * var(--tu));
+  --fs-h2: calc(24 * var(--tu));
+  --fs-large: calc(18 * var(--tu));
+  --fs-body: calc(16 * var(--tu));
+  --fs-small: calc(14 * var(--tu));
+
+  /* Page margin and gutter (Mobile) */
+  --margin: var(--space-s);
+  --gutter: var(--space-s);
+  --columns: 4;
+  /* The fixed header's bottom edge: its top gap plus the button's height */
+  --header-top: var(--space-s);
+  --header-bottom: calc(var(--header-top) + 2 * var(--space-s) + 1.2 * var(--fs-body));
+  --section-gap: var(--space-2xl);
+  --first-section-gap: var(--space-2xl);
+}
+
+@media (min-width: 744px) {
+  :root {
+    --fs-h1: calc(48 * var(--tu));
+    --fs-h2: calc(32 * var(--tu));
+    --fs-large: calc(20 * var(--tu));
+    --fs-body: calc(18 * var(--tu));
+    --margin: var(--space-xl);
+    --gutter: var(--space-m);
+    --columns: 8;
+    --header-top: var(--space-xl);
+    --section-gap: var(--space-4xl);
+    --first-section-gap: var(--space-3xl);
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --fs-h1: calc(60 * var(--tu));
+    --fs-h2: calc(36 * var(--tu));
+    --fs-large: calc(24 * var(--tu));
+    --gutter: var(--space-l);
+    --columns: 12;
+  }
+}
+
+.t-h1, .t-h2, .t-large, .t-body, .t-small {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-wrap: pretty;
+  margin: 0;
+}
+.t-h1 { font-size: var(--fs-h1); }
+.t-h2 { font-size: var(--fs-h2); }
+.t-large { font-size: var(--fs-large); }
+.t-body { font-size: var(--fs-body); }
+.t-small { font-size: var(--fs-small); }
+
+@media (min-width: 744px) {
+  .t-body, .t-large { text-wrap: balance; }
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* The header is fixed: whatever gets keyboard focus or is linked to scrolls to below it, never under it */
+  scroll-padding-top: calc(var(--header-bottom) + var(--space-s));
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1 0 auto; }
+
+h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+table { border-collapse: collapse; }
+td, th { font-variant-numeric: tabular-nums; }
+
+/* The container: no wider than 1440 px (up to 2400 px on wide screens), centred */
+.container {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.on-video :focus-visible { outline-color: var(--on-video); }
+
+/* Links and controls with no box of their own get rounded outlines */
+.link, .link-quiet { border-radius: var(--radius); }
+
+/* ---------- One shared underline rule ---------- */
+/* Hover part only where hover exists: a phone keeps a tapped link "hovered" */
+@media (hover: hover) {
+  .u:hover { text-decoration: underline; }
+}
+.u:focus-visible { text-decoration: underline; }
+.u[aria-current="page"] { text-decoration: none; }
+
+/* Text links: --text, clickable area at least 44 px tall, no visible box */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  color: var(--text);
+}
+.arrow { width: 1em; height: 1em; flex: none; }
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  padding: var(--space-s) var(--space-m);
+  background: var(--action);
+  color: var(--on-action);
+  border-radius: var(--radius);
+  font-size: var(--fs-body);
+  line-height: 1.2;
+}
+.button.u:hover, .button.u:focus-visible { text-decoration: none; }
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: fixed;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-s);
+  background: var(--action);
+  color: var(--on-action);
+  border-radius: var(--radius);
+  transform: translateY(-300%);
+}
+.skip-link:focus { transform: none; }
+
+/* ---------- Page top ---------- */
+/* Pages without a hero start the first section below the fixed header */
+.page-top { padding-top: calc(var(--header-bottom) + var(--first-section-gap)); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+/* ---------- Form fields: a line under the field, no box ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-s);
+  min-width: 0;
+}
+.field-label {
+  font-size: var(--fs-small);
+  line-height: 1.2;
+  color: var(--text-muted);
+}
+.field:focus-within .field-label { color: var(--text); }
+.field.has-error .field-label { color: var(--text-muted); }
+.field-control { position: relative; }
+
+.field-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-s) 0 calc(var(--space-s) - 1px);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--text);
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  appearance: none;
+}
+.field-input::placeholder { color: var(--text-muted); opacity: 1; }
+/* An outline would draw a box around a field that is only a line: show the line thicker instead */
+.field-input:focus,
+.field-input:focus-visible {
+  outline: none;
+  border-bottom-width: 2px;
+  padding-bottom: calc(var(--space-s) - 2px);
+  color: var(--text);
+}
+.field.has-error .field-input,
+.field.has-error .field-input:focus {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: calc(var(--space-s) - 2px);
+}
+
+/* Date and time fields: same height as text fields, text starting on the left */
+.field-input[type='date'],
+.field-input[type='time'] {
+  height: calc(2 * var(--space-s) + 1.2em);
+  min-width: 0;
+  text-align: start;
+}
+.field-input[type='date']::-webkit-date-and-time-value,
+.field-input[type='time']::-webkit-date-and-time-value { text-align: start; }
+
+/* An empty date field looks empty: "Pick a date" sits over it */
+.date-hint {
+  position: absolute;
+  inset: 0 auto auto 0;
+  padding-top: var(--space-s);
+  color: var(--text-muted);
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  pointer-events: none;
+}
+.field-control[data-empty='true']:not(:focus-within) input[type='date'] { color: transparent; }
+.field-control[data-empty='true']:not(:focus-within) input[type='date']::-webkit-datetime-edit { color: transparent; }
+.field-control:not([data-empty='true']) .date-hint,
+.field-control:focus-within .date-hint { display: none; }
+/* An empty time field shows the browser's own format, muted */
+.field-control[data-empty='true'] input[type='time'] { color: var(--text-muted); }
+
+/* ---------- The site's own airport list ---------- */
+.airport-list {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+  z-index: 30;
+  max-height: calc(6 * 44px + 2 * var(--space-xs));
+  overflow-y: auto;
+  padding: var(--space-xs) 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) transparent;
+}
+.airport-list[hidden] { display: none; }
+.airport-list [role='option'] {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-s);
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  color: var(--text);
+  cursor: pointer;
+}
+.airport-list [role='option'][hidden] { display: none; }
+.airport-list [role='option'][data-active='true'] { text-decoration: underline; }
+@media (hover: hover) {
+  .airport-list [role='option']:hover { text-decoration: underline; }
+}
+
+/* ---------- Field parts: label, body, hint, error ---------- */
+.field-body { display: flex; flex-direction: column; gap: var(--space-xs); min-width: 0; }
+.hint { color: var(--text-muted); }
+/* An error: its text in --text, after an 8 px --accent dot. The line turns --accent too (.has-error). */
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  color: var(--text);
+}
+.error[hidden] { display: none; }
+.error::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: calc((1.2em - 8px) / 2);
+  border-radius: 50%;
+  background: var(--accent);
+}
+.field-input.area { resize: vertical; min-height: calc(3 * 1.2em + 2 * var(--space-s)); }
+/* Number fields: no browser spin buttons */
+.field-input[type='number'] { appearance: textfield; -moz-appearance: textfield; }
+.field-input[type='number']::-webkit-outer-spin-button,
+.field-input[type='number']::-webkit-inner-spin-button { appearance: none; margin: 0; }
+.field-input[type='email'], .field-input[type='tel'] { text-overflow: ellipsis; }

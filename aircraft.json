@@ -1,0 +1,61 @@
+{
+  "about": "Kinton Aerospace's jet. Concept data for the build-along. Every figure is for our own jet, not the model in general. Photo alt text describes what each file should show: update it if your photo differs.",
+  "type": "Light jet",
+  "seats": 7,
+  "pricing": {
+    "perFlightHourEur": 4800,
+    "minimumMinutesPerFlight": 60,
+    "currency": "EUR",
+    "estimateBasis": "One way, or a return on the same day. Both are two flights: yours and the jet's flight back to Barcelona, empty or with you on board."
+  },
+  "featuredRoutes": ["GVA", "LIN", "LIS", "MUC"],
+  "specs": [
+    {
+      "group": "Cabin",
+      "rows": [
+        { "label": "Seats", "value": "7" },
+        { "label": "Cabin height", "value": "1.50 m" },
+        { "label": "Luggage", "value": "2.4 m³, a suitcase per passenger" },
+        { "label": "Washroom", "value": "Private, at the back" },
+        { "label": "Wi-Fi", "value": "On board" }
+      ]
+    },
+    {
+      "group": "Performance",
+      "rows": [
+        { "label": "Cruise speed", "value": "830 km/h" },
+        { "label": "Range", "value": "3,600 km with 4 passengers" },
+        { "label": "Shortest runway", "value": "1,000 m" }
+      ]
+    },
+    {
+      "group": "Operation",
+      "rows": [
+        { "label": "Built", "value": "2022" },
+        { "label": "Operator", "value": "Kinton Aerospace, with our own crew" },
+        { "label": "Crew", "value": "2 pilots on every flight" },
+        { "label": "Safety audit", "value": "ARGUS Platinum" },
+        { "label": "Base", "value": "Barcelona (BCN)" }
+      ]
+    }
+  ],
+  "cabin": {
+    "defaultZone": "club",
+    "zones": [
+      { "id": "cockpit", "number": "01", "label": "Cockpit", "stat": "2 pilots", "text": "Two of our own pilots on every flight.", "photo": "cockpit" },
+      { "id": "entry", "number": "02", "label": "Entry", "stat": "1 seat", "text": "The door is at the front, on the left. Opposite it, one seat faces the aisle.", "photo": "exterior" },
+      { "id": "club", "number": "03", "label": "Club seats", "stat": "4 seats", "text": "Four seats in two facing pairs, each pair with a fold-out table.", "photo": "club" },
+      { "id": "forward", "number": "04", "label": "Forward seats", "stat": "2 seats", "text": "Two seats facing forward, behind the club seats.", "photo": "forward" },
+      { "id": "washroom", "number": "05", "label": "Washroom", "stat": "Private", "text": "A private washroom at the back of the cabin.", "photo": "washroom" },
+      { "id": "luggage", "number": "06", "label": "Luggage hold", "stat": "2.4 m³", "text": "In the tail, with room for a suitcase per passenger.", "photo": "exterior" }
+    ]
+  },
+  "photos": [
+    { "id": "exterior", "file": "jet-exterior.jpg", "alt": "Our jet on the apron at Barcelona, with the door and the luggage hold open.", "nightFile": "jet-exterior-dark.jpg", "nightAlt": "Our jet on the apron at Barcelona at night, with the door and the luggage hold open and the cabin lit." },
+    { "id": "cockpit", "file": "jet-cockpit.jpg", "alt": "The cockpit, with seats for two pilots.", "nightFile": "jet-cockpit-dark.jpg", "nightAlt": "The cockpit at night, lit by its instrument screens, with seats for two pilots." },
+    { "id": "club", "file": "cabin-club.jpg", "alt": "Four club seats in two facing pairs, with fold-out tables.", "nightFile": "cabin-club-dark.jpg", "nightAlt": "Four club seats in two facing pairs at night, with the cabin lights dimmed." },
+    { "id": "seat", "file": "cabin-seat.jpg", "alt": "A club seat by the window, with its fold-out table open.", "nightFile": "cabin-seat-dark.jpg", "nightAlt": "A club seat by the window at night, with its fold-out table open and the cabin lights dimmed." },
+    { "id": "forward", "file": "cabin-forward.jpg", "alt": "Two forward-facing seats behind the club seats." },
+    { "id": "washroom", "file": "cabin-washroom.jpg", "alt": "The private washroom at the back of the cabin." }
+  ]
+}

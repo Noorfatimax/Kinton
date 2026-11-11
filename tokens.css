@@ -1,0 +1,95 @@
+:root {
+  /* Paint: defined once, used only by the jobs below */
+  --black: #121315;
+  --graphite: #312D2A;
+  --stone: #726D69;
+  --aluminum: #AFABA8;
+  --moonrock: #DCD9D4;
+  --paper: #F7F4F1;
+  --white: #FFFFFF;
+  --signal: #EC4409;
+
+  /* Jobs: Light */
+  --background: var(--paper);
+  --surface: var(--white);
+  --text: var(--black);
+  --text-muted: var(--stone);
+  --border: var(--black);
+  --action: var(--black);
+  --on-action: var(--white);
+  --accent: var(--signal);
+  --on-video: var(--white);
+  --map-land: var(--moonrock);
+  --video-backdrop: var(--black);
+
+  /* Spacing and corners (see "Spacing and corners") */
+  --space-xs: 8px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 32px;
+  --space-xl: 40px;
+  --space-2xl: 80px;
+  --space-3xl: 160px;
+  --space-4xl: 200px;
+  --radius: 6px;
+
+  color-scheme: light;
+}
+
+/* Dark, when the visitor's device asks for it and they haven't chosen */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: var(--black);
+    --surface: var(--graphite);
+    --text: var(--paper);
+    --text-muted: var(--aluminum);
+    --border: var(--paper);
+    --action: var(--paper);
+    --on-action: var(--black);
+    --map-land: var(--graphite);
+    color-scheme: dark;
+  }
+}
+
+/* Dark, when the visitor turns the cabin lights off */
+:root[data-theme="dark"] {
+  --background: var(--black);
+  --surface: var(--graphite);
+  --text: var(--paper);
+  --text-muted: var(--aluminum);
+  --border: var(--paper);
+  --action: var(--paper);
+  --on-action: var(--black);
+  --map-land: var(--graphite);
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------
+   Wide screens (above 1440 px): the 1440 px layout grows with the
+   screen, up to its 2400 px size. See "Wide screens" in design-spec.md.
+   --u is 1 px at 1440 and below, and grows with the screen above that.
+   --tu is the text unit: text grows half as much as the page.
+   Fixed sizes elsewhere are written as calc(N * var(--u)).
+   ------------------------------------------------------------------ */
+:root {
+  --u: 1px;
+  --tu: 1px;
+  --page-max: calc(1440 * var(--u));
+}
+
+@media (min-width: 1441px) {
+  :root {
+    --u: min(calc(100vw / 1440), calc(2400px / 1440));
+    --tu: calc(0.5px + 0.5 * var(--u));
+
+    --space-xs: calc(8 * var(--u));
+    --space-s: calc(16 * var(--u));
+    --space-m: calc(24 * var(--u));
+    --space-l: calc(32 * var(--u));
+    --space-xl: calc(40 * var(--u));
+    --space-2xl: calc(80 * var(--u));
+    --space-3xl: calc(160 * var(--u));
+    --space-4xl: calc(200 * var(--u));
+    --radius: calc(6 * var(--u));
+  }
+}
